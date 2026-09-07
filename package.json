@@ -1,0 +1,67 @@
+{
+  "name": "turborepo-graph-companion",
+  "displayName": "Turborepo Graph Companion",
+  "description": "Shows your Turborepo workspace dependency graph as a sidebar tree -- parses turbo.json + package.json workspaces, no CLI shell-out. No data leaves your editor.",
+  "version": "0.1.0",
+  "publisher": "GapHunterLabs",
+  "icon": "images/icon.png",
+  "license": "Apache-2.0",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Linters"
+  ],
+  "keywords": [
+    "turborepo",    "monorepo",    "workspace",    "graph"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GapHunterLabs/vscode-turborepo-graph-companion.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GapHunterLabs/vscode-turborepo-graph-companion/issues"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "turborepoGraphCompanion.graph",
+          "name": "Turborepo Graph"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "turborepoGraphCompanion.refresh",
+        "title": "Turborepo Graph Companion: Refresh",
+        "icon": "$(refresh)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "turborepoGraphCompanion.refresh",
+          "when": "view == turborepoGraphCompanion.graph",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -w -p ./",
+    "test": "tsc -p ./ && node --test \"out/test/**/*.test.js\""
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.2"
+  }
+}
