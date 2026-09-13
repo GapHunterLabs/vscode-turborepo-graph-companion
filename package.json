@@ -2,7 +2,7 @@
   "name": "turborepo-graph-companion",
   "displayName": "Turborepo Graph Companion",
   "description": "Shows your Turborepo workspace dependency graph as a sidebar tree -- parses turbo.json + package.json workspaces, no CLI shell-out. No data leaves your editor.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "GapHunterLabs",
   "icon": "images/icon.png",
   "license": "Apache-2.0",
