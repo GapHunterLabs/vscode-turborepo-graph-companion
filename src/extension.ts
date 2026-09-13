@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { WorkspacePackage, buildGraph, findRoots, matchesAnyWorkspaceGlob } from './workspaceGraph';
+import { recordHit } from './reviewPrompt';
 
 class GraphNode extends vscode.TreeItem {
   constructor(
@@ -117,6 +118,12 @@ export function activate(context: vscode.ExtensionContext): void {
     if (!folders || folders.length === 0) return;
     const packages = await loadWorkspacePackages(folders[0].uri);
     provider.refresh(buildGraph(packages));
+    // A real Turborepo/npm workspace was found and produced at least
+    // one package in the graph -- an empty/non-workspace folder above
+    // never reaches this line with a non-empty result.
+    if (packages.length > 0) {
+      recordHit(context);
+    }
   }
 
   void refresh();
